@@ -1,0 +1,40 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="user-profile">
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="./assets/images/users/profile.png" alt="user" /><span class="hide-menu">Juan Donoso</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="javascript:void()">My Perfil</a></li>
+                    </ul>
+                </li>
+                <li class="nav-devider"></li>
+                <li class="nav-small-cap">MÓDULOS</li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Mantenedores</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a [routerLink]="['libro']" [routerLinkActive]="['active']">Libro</a></li>
+                        <li><a [routerLink]="['sucursal']" [routerLinkActive]="['active']">Sucursal</a></li>
+                        <li><a [routerLink]="['comuna']" [routerLinkActive]="['active']">Comuna</a></li>
+                        <li><a [routerLink]="['cliente']" [routerLinkActive]="['active']">Cliente</a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Transacciones</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a [routerLink]="['inventario']" [routerLinkActive]="['active']">Inventario</a></li>
+                        <li><a [routerLink]="['inicio']" [routerLinkActive]="['active']">Comprar/Reservar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->

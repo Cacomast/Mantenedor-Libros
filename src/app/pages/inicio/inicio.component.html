@@ -1,0 +1,134 @@
+<div *ngIf="paso === 1" class="row">
+    <div class="col-lg-3 col-md-6" *ngFor="let item of libros">
+        <!-- Card -->
+        <div class="card">
+            <img class="card-img-top img-responsive" src="../../../assets/images/libro-generico.png" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title">{{item.titulo}}</h4>
+                <p class="card-text">Isbn: {{item.isbn}}</p>
+                <p class="card-text">Autor: {{item.autor}}</p>
+                <p class="card-text">Stock: {{item.stock}}</p>
+                <h4 class="card-text">Precio: ${{item.precio}}</h4>
+                <button *ngIf="item.stock > 0" type="button" class="btn btn-outline-primary btn-rounded" (click)="comprarLibro(item)">Comprar</button>
+                <button *ngIf="item.stock === 0" type="button" class="btn btn-outline-primary btn-rounded" (click)="reservarLibro(item)">Reservar</button>
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+</div>
+<div class="row" *ngIf="paso === 2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body wizard-content">
+                <h4 *ngIf="compra" class="card-title">Proceso de Compra</h4>
+                <h4 *ngIf="reserva" class="card-title">Proceso de Reserva</h4>
+                <form class="tab-wizard wizard-circle" autocomplete="off " (ngSubmit)="guardarDatosCliente(forma)" #forma="ngForm">
+                    <!-- Step 1 -->
+                    <h6>Datos Personales</h6>
+                    <section>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rut">Rut :</label>
+                                    <input [ngModel]="cliente.rutCompleto" name="rutCompleto" #rutCompleto="ngModel" required type="text" class="form-control" id="rut"> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre :</label>
+                                    <input [ngModel]="cliente.nombre" name="nombre" #nombre="ngModel" type="text" required class="form-control" id="nombre"> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="direccion">Dirección :</label>
+                                    <input [ngModel]="cliente.direccion" name="direccion" #direccion="ngModel" required type="text" class="form-control" id="direccion"> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phoneNumber1">Teléfono :</label>
+                                    <input [ngModel]="cliente.telefono" name="telefono" #telefono="ngModel" required type="text" class="form-control" id="phoneNumber1"> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="comuna">Comuna :</label>
+                                    <select [ngModel]="cliente.comunaId" name="comuna" #comuna="ngModel" required class="custom-select form-control" id="comuna" name="comuna">
+                                        <option *ngFor="let item of comunas" [value] = "item.comunaId">{{ item.nombre }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="correo">Email :</label>
+                                    <input [ngModel]="cliente.correo" name="correo" #correo="ngModel" required type="email" class="form-control" id="correo"> </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-secondary btn-rounded" (click)="limpiarPasos()">Cancelar</button>
+                            <button type="submit" class="ml-2 btn btn-outline-primary btn-rounded">Continuar</button>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="paso === 3 && compra">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body wizard-content">
+                <h4 class="card-title">Datos de Pago</h4>
+                <form action="#" class="tab-wizard wizard-circle">
+                    <!-- Step 1 -->
+                    <h6>Datos Personales</h6>
+                    <section>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rut">Rut :</label>
+                                    <input type="text" class="form-control" id="rut"> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre :</label>
+                                    <input type="text" class="form-control" id="nombre"> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="direccion">Dirección :</label>
+                                    <input type="text" class="form-control" id="direccion"> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phoneNumber1">Teléfono :</label>
+                                    <input type="text" class="form-control" id="phoneNumber1"> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="comuna">Comuna :</label>
+                                    <select class="custom-select form-control" id="comuna" name="comuna">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="correo">Email :</label>
+                                    <input type="email" class="form-control" id="correo"> </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-secondary btn-rounded">Cancelar</button>
+                            <button type="submit" class="ml-2 btn btn-outline-primary btn-rounded">Pagar</button>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

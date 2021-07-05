@@ -1,0 +1,67 @@
+<app-tabla-libro [tabla]="tabla" (returnUpdate)="returnLibroUpdate($event)" (returnDelete)=" returnLibroDelete($event)"></app-tabla-libro>
+
+<div id="add-item" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" (click)="limpiarModal()" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title " id="myModalLabel ">Nueva Comuna</h4>
+            </div>
+            <form class="floating-labels m-t-40 " autocomplete="off " (ngSubmit)="saveLibro(forma)" #forma="ngForm">
+                <div class="modal-body ">
+                    <div *ngIf="libro.libroId !=0 " class="form-group m-b-40 focused ">
+                        <input [ngModel]="libro.libroId " name="libroId" #libroId="ngModel" required type="text" class="form-control" disabled id="libroId">
+                        <span class="bar"></span>
+                        <label for="libroId">Id Libro</label>
+                    </div>
+                    <div [class.focused]="libro.libroId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="libro.isbn" name="isbn" #isbn="ngModel" required type="text" class="form-control" id="isbn">
+                        <span class="bar"></span>
+                        <label for="isbn">Isbn</label>
+                    </div>
+                    <div [class.focused]="libro.libroId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="libro.titulo" name="titulo" #titulo="ngModel" required type="text" class="form-control" id="titulo">
+                        <span class="bar"></span>
+                        <label for="titulo">Título</label>
+                    </div>
+                    <div [class.focused]="libro.libroId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="libro.autor" name="autor" #autor="ngModel" required type="text" class="form-control" id="autor">
+                        <span class="bar"></span>
+                        <label for="autor">Autor</label>
+                    </div>
+                    <div [class.focused]="libro.libroId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="libro.editorial" name="editorial" #editorial="ngModel" required type="text" class="form-control" id="editorial">
+                        <span class="bar"></span>
+                        <label for="editorial">Editorial</label>
+                    </div>
+                    <div [class.focused]="libro.libroId !=0 || libro.annio === 0" class="form-group m-b-40 ">
+                        <input [ngModel]="libro.annio" name="annio" #annio="ngModel" required type="number" class="form-control" id="annio">
+                        <span class="bar"></span>
+                        <label for="annio">Año</label>
+                    </div>
+                    <div [class.focused]="libro.libroId !=0" class="form-group m-b-40 ">
+                        <select class="form-control p-0" [ngModel]="libro.tapa" name="tapa" #tapa="ngModel" required id="tapa">
+                            <option value = ""></option>
+                            <option value = "Dura">Dura</option>
+                            <option value = "Blanda">Blanda</option>
+                            <option value = "Rústica">Rústica</option>
+                        </select><span class="bar"></span>
+                        <label for="tapa">Tapa</label>
+                    </div>
+                    <div [class.focused]="libro.libroId !=0 || libro.precio === 0" class="form-group m-b-40 ">
+                        <input [ngModel]="libro.precio" name="precio" #precio="ngModel" required type="number" class="form-control" id="precio">
+                        <span class="bar"></span>
+                        <label for="precio">Precio</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-outline-info waves-effect ">Guardar</button>
+                    <button type="button" (click)="limpiarModal()" class="btn btn-outline-default waves-effect" id="closeModal" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

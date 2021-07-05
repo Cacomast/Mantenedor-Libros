@@ -1,0 +1,49 @@
+<app-tabla-sucursal [tabla]="tabla" (returnUpdate)="returnSucursalUpdate($event)" (returnDelete)=" returnSucursalDelete($event)"></app-tabla-sucursal>
+
+<div id="add-item" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" (click)="limpiarModal()" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title " id="myModalLabel ">Nueva Comuna</h4>
+            </div>
+            <form class="floating-labels m-t-40 " autocomplete="off " (ngSubmit)="saveSucursal(forma)" #forma="ngForm">
+                <div class="modal-body ">
+                    <div *ngIf="sucursal.sucursalId !=0 " class="form-group m-b-40 focused ">
+                        <input [ngModel]="sucursal.sucursalId " name="idSucursal" #idSucursal="ngModel" required type="text" class="form-control" disabled id="idSucursal">
+                        <span class="bar"></span>
+                        <label for="idSucursal">Id Sucursal</label>
+                    </div>
+                    <div [class.focused]="sucursal.sucursalId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="sucursal.nombre" name="nombre" #nombre="ngModel" required type="text" class="form-control" id="nombreSucursal">
+                        <span class="bar"></span>
+                        <label for="nombreSucursal">Nombre Sucursal</label>
+                    </div>
+                    <div [class.focused]="sucursal.sucursalId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="sucursal.direccion" name="direccion" #direccion="ngModel" required type="text" class="form-control" id="direccion">
+                        <span class="bar"></span>
+                        <label for="direccion">Dirección</label>
+                    </div>
+                    <div [class.focused]="sucursal.sucursalId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="sucursal.encargado" name="encargado" #encargado="ngModel" required type="text" class="form-control" id="encargado">
+                        <span class="bar"></span>
+                        <label for="encargado">Encargado</label>
+                    </div>
+                    <div [class.focused]="sucursal.sucursalId !=0" class="form-group m-b-40 ">
+                        <select class="form-control p-0" [ngModel]="sucursal.comunaId" name="comuna" #comuna="ngModel" required id="comuna">
+                            <option *ngFor="let item of tabla.comunas" [value] = "item.comunaId">{{ item.nombre }}</option>
+                        </select><span class="bar"></span>
+                        <label for="comuna">Comuna</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-outline-info waves-effect ">Guardar</button>
+                    <button type="button" (click)="limpiarModal()" class="btn btn-outline-default waves-effect" id="closeModal" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

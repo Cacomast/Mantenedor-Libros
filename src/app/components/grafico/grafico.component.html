@@ -1,0 +1,9 @@
+<div class="card">
+    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+        <h3 class="mb-5">{{this.grafico.title}}</h3>
+        <div style="display: block" class="col-6">
+            <canvas baseChart [data]="grafico.values" [labels]="grafico.labels" [chartType]="grafico.type">
+            </canvas>
+        </div>
+    </div>
+</div>

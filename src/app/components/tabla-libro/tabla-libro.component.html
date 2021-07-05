@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{ tabla.title }}</h4>
+                <h6 class="card-subtitle"></h6>
+                <div class="table-responsive">
+                    <table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list" data-page-size="10">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let item of tabla.headers">{{ item }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of tabla.values">
+                                <td>{{ item.libroId }}</td>
+                                <td>{{ item.isbn }}</td>
+                                <td>{{ item.titulo }}</td>
+                                <td>{{ item.autor }}</td>
+                                <td>{{ item.editorial }}</td>
+                                <td>{{ item.annio }}</td>
+                                <td>{{ item.tapa }}</td>
+                                <td>${{ item.precio }}</td>
+                                <td *ngIf="item.estado.data[0] == 1"><span class="label label-success">Active</span> </td>
+                                <td *ngIf="item.estado.data[0] == 0"><span class="label label-danger">Disabled</span> </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline update-row-btn" (click)="getRowUpdate(item)" data-toggle="modal" data-target="#add-item"><i class="ti-pencil-alt" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" (click)="getRowDelete(item)"><i class="ti-close" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <button type="button" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#add-item">{{tabla.button}}</button>
+                                </td>
+                                <td colspan="7">
+                                    <div class="text-right">
+                                        <ul class="pagination"> </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

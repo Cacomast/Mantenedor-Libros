@@ -1,0 +1,65 @@
+<app-tabla-clientes [tabla]="tabla" (returnUpdate)="returnClienteUpdate($event)" (returnDelete)=" returnClienteDelete($event)"></app-tabla-clientes>
+
+<div id="add-item" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" (click)="limpiarModal()" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title " id="myModalLabel ">Nuevo Cliente</h4>
+            </div>
+            <form class="floating-labels m-t-40 " autocomplete="off " (ngSubmit)="saveCliente(forma)" #forma="ngForm">
+                <div class="modal-body ">
+                    <div *ngIf="cliente.clienteId !=0 " class="form-group m-b-40 focused ">
+                        <input [ngModel]="cliente.clienteId " name="clienteId" #clienteId="ngModel" required type="text" class="form-control" disabled id="clienteId">
+                        <span class="bar"></span>
+                        <label for="clienteId">Id Cliente</label>
+                    </div>
+                    <div [class.focused]="cliente.clienteId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="cliente.rutCompleto" name="rutCompleto" #rutCompleto="ngModel" required type="text" class="form-control" id="rutCompleto">
+                        <span class="bar"></span>
+                        <label for="rutCompleto">Rut</label>
+                    </div>
+                    <div [class.focused]="cliente.clienteId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="cliente.nombre" name="nombre" #nombre="ngModel" required type="text" class="form-control" id="nombre">
+                        <span class="bar"></span>
+                        <label for="nombre">Nombre</label>
+                    </div>
+                    <div [class.focused]="cliente.clienteId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="cliente.direccion" name="direccion" #direccion="ngModel" required type="text" class="form-control" id="direccion">
+                        <span class="bar"></span>
+                        <label for="direccion">Dirección</label>
+                    </div>
+                    <div [class.focused]="cliente.clienteId !=0" class="form-group m-b-40 ">
+                        <select class="form-control p-0" [ngModel]="cliente.comunaId" name="comuna" #comuna="ngModel" required id="comuna">
+                            <option *ngFor="let item of tabla.comunas " [value] = "item.comunaId">{{ item.nombre }}</option>
+                        </select><span class="bar"></span>
+                        <label for="comuna">Comuna</label>
+                    </div>
+                    <div [class.focused]="cliente.clienteId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="cliente.telefono" name="telefono" #telefono="ngModel" required type="text" class="form-control" id="telefono">
+                        <span class="bar"></span>
+                        <label for="telefono">Teléfono</label>
+                    </div>
+                    <div [class.focused]="cliente.clienteId !=0" class="form-group m-b-40 ">
+                        <input [ngModel]="cliente.correo" name="correo" #correo="ngModel" required type="text" class="form-control" id="correo">
+                        <span class="bar"></span>
+                        <label for="correo">Correo</label>
+                    </div>
+                    <div [class.focused]="cliente.clienteId !=0" class="form-group m-b-40 ">
+                        <select class="form-control p-0" [ngModel]="cliente.valor" name="valor" #valor="ngModel" required id="valor">
+                            <option *ngFor="let item of valores " [value] = "item">{{ item }}</option>
+                        </select><span class="bar"></span>
+                        <label for="valor">Valor</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-outline-info waves-effect ">Guardar</button>
+                    <button type="button" (click)="limpiarModal()" class="btn btn-outline-default waves-effect" id="closeModal" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
